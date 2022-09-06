@@ -2,27 +2,28 @@
 package com.crio.warmup.stock;
 
 
-import com.crio.warmup.stock.dto.*;
+//import com.crio.warmup.stock.dto.*;
 import com.crio.warmup.stock.log.UncaughtExceptionHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
+//import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+//import java.time.LocalDate;
+//import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
+//import java.util.Collections;
+//import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+//import java.util.stream.Collectors;
+//import java.util.stream.Stream;
 import org.apache.logging.log4j.ThreadContext;
-import org.springframework.web.client.RestTemplate;
+//import org.springframework.web.client.RestTemplate;
 
 
 public class PortfolioManagerApplication {
@@ -45,8 +46,18 @@ public class PortfolioManagerApplication {
   //  2. You can use "./gradlew build" to check if your code builds successfully.
 
   public static List<String> mainReadFile(String[] args) throws IOException, URISyntaxException {
+    ObjectMapper o = new ObjectMapper();
+    File  tradesD = new File("src/main/resources/"+ args[0]);
+    //System.out.println("path:::- "+tradesD);
+    Trade[] trades = o.readValue(tradesD, Trade[].class);
+    List<String> lst = new ArrayList<String>();
+    
+    for(int i = 0; i < trades.length; i++) {
+      lst.add(trades[i].symbol);
+      //System.out.println("Trades symbols:::- " + trades[i].symbol+" list Symbols:- " +lst.get(i));
+    }
 
-     return Collections.emptyList();
+    return (lst == null) ? Arrays.asList(new String[]{}) : lst;
   }
 
 
@@ -54,19 +65,12 @@ public class PortfolioManagerApplication {
   // 1. You may need to copy relevant code from #mainReadQuotes to parse the Json.
   // 2. Remember to get the latest quotes from Tiingo API.
 
-
-
-
-
-
   // Note:
   // 1. You may have to register on Tiingo to get the api_token.
   // 2. Look at args parameter and the module instructions carefully.
   // 2. You can copy relevant code from #mainReadFile to parse the Json.
   // 3. Use RestTemplate#getForObject in order to call the API,
   //    and deserialize the results in List<Candle>
-
-
 
   private static void printJsonObject(Object object) throws IOException {
     Logger logger = Logger.getLogger(PortfolioManagerApplication.class.getCanonicalName());
@@ -117,31 +121,24 @@ public class PortfolioManagerApplication {
   public static List<String> debugOutputs() {
 
      String valueOfArgument0 = "trades.json";
-     String resultOfResolveFilePathArgs0 = "";
-     String toStringOfObjectMapper = "";
-     String functionNameFromTestFileInStackTrace = "";
-     String lineNumberFromTestFileInStackTrace = "";
-
+     String resultOfResolveFilePathArgs0 = "/home/crio-user/workspace/rksaxena010-ME_QMONEY_V2/qmoney/bin/main/trades.json";
+     String toStringOfObjectMapper = "com.fasterxml.jackson.databind.ObjectMapper@5542c4ed";
+     String functionNameFromTestFileInStackTrace = "mainReadFile()";
+     String lineNumberFromTestFileInStackTrace = "29";
 
     return Arrays.asList(new String[]{valueOfArgument0, resultOfResolveFilePathArgs0,
         toStringOfObjectMapper, functionNameFromTestFileInStackTrace,
         lineNumberFromTestFileInStackTrace});
   }
 
-
   // Note:
   // Remember to confirm that you are getting same results for annualized returns as in Module 3.
-
-
 
   public static void main(String[] args) throws Exception {
     Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler());
     ThreadContext.put("runId", UUID.randomUUID().toString());
 
     printJsonObject(mainReadFile(args));
-
-
-
   }
 }
 

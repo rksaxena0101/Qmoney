@@ -17,7 +17,9 @@ class ModuleOneTest {
     //when
     List<String> results = PortfolioManagerApplication
         .mainReadFile(new String[]{filename});
-
+        /*for(int i = 0; i < results.size(); i++) {
+          System.out.println("Trades symbols:::- " + results.get(i));
+        }*/
     //then
     Assertions.assertEquals(expected, results);
   }
