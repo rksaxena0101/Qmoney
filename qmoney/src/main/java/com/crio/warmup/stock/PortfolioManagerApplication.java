@@ -40,13 +40,11 @@ public class PortfolioManagerApplication {
   //  1. There can be few unused imports, you will need to fix them to make the build pass.
   //  2. You can use "./gradlew build" to check if your code builds successfully.
   public static List<String> mainReadFile(String[] args) throws IOException, URISyntaxException {
-    ObjectMapper o = new ObjectMapper();
-    File  file = new File("src/main/resources/"+ args[0]);
+    File f = resolveFileFromResources(args[0]);
     List<String> lst = new ArrayList<String>();
-
-    //Reading values from trades.json
-    Trade[] trades = o.readValue(file, Trade[].class);
-    for(int i = 0; i < trades.length; i++) lst.add(trades[i].symbol);
+    ObjectMapper om = getObjectMapper();
+    PortfolioTrade[] trades = om.readValue(f, PortfolioTrade[].class);
+    for(PortfolioTrade pf:trades) lst.add(pf.getSymbol());
 
     return (lst == null) ? Arrays.asList(new String[]{}) : lst;
   }
