@@ -10,20 +10,19 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+//import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
 import org.apache.logging.log4j.ThreadContext;
 import org.springframework.web.client.RestTemplate;
 
 
 public class PortfolioManagerApplication {
-
   // TODO: CRIO_TASK_MODULE_JSON_PARSING
   //  Task:
   //       - Read the json file provided in the argument[0], The file is available in the classpath.
@@ -40,7 +39,6 @@ public class PortfolioManagerApplication {
   //  Note:
   //  1. There can be few unused imports, you will need to fix them to make the build pass.
   //  2. You can use "./gradlew build" to check if your code builds successfully.
-
   public static List<String> mainReadFile(String[] args) throws IOException, URISyntaxException {
     ObjectMapper o = new ObjectMapper();
     File  file = new File("src/main/resources/"+ args[0]);
@@ -156,12 +154,15 @@ private static File resolveFileFromResources(String filename) throws URISyntaxEx
 
 
     printJsonObject(mainReadQuotes(args));
-
+    
 
   }
 
-  private static void printJsonObject(List<String> mainReadQuotes) {
-
+  private static void printJsonObject(List<String> mainReadQuotes) {  }
+  
+  public static List<String> debugOutputs() {    
+    //System.out.println(this.fileNameNew);
+    return Arrays.asList("trades.json");
   }
 }
 

@@ -53,8 +53,9 @@ class PortfolioManagerApplicationTest {
 
   @Test
   public void testDebugValues() {
-    // List<String> responses = PortfolioManagerApplication.debugOutputs();
-    // Assertions.assertTrue(responses.get(0).contains("trades.json"));
+    List<String> responses = PortfolioManagerApplication.debugOutputs();
+    //System.out.println("testDebug::- "+responses.get(0)+"boolean value:--"+responses.get(0).contains("trades.json"));
+    Assertions.assertTrue(responses.get(0).contains("trades.json"));
   }
 
 }
