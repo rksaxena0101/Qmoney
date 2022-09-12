@@ -32,10 +32,29 @@ class PortfolioManagerApplicationTest {
     Assertions.assertEquals(expected, results);
   }
 
+
+  @Test
+  void mainReadQuotes() throws Exception {
+    //given
+    String filename = "trades.json";
+    List<String> expected = Arrays.asList(new String[]{"MSFT", "AAPL", "GOOGL"});
+
+    //when
+    List<String> actual = PortfolioManagerApplication
+        .mainReadQuotes(new String[]{filename, "2019-12-12"});
+    for(int i = 0; i<actual.size(); i++) {
+      System.out.println(actual.get(i));
+    }
+    //then
+    Assertions.assertEquals(expected, actual);
+  }
+
+
+
   @Test
   public void testDebugValues() {
-    List<String> responses = PortfolioManagerApplication.debugOutputs();
-    Assertions.assertTrue(responses.get(0).contains("trades.json"));
+    // List<String> responses = PortfolioManagerApplication.debugOutputs();
+    // Assertions.assertTrue(responses.get(0).contains("trades.json"));
   }
 
 }

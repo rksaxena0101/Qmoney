@@ -12,14 +12,12 @@ class ModuleOneTest {
   void mainReadFile() throws Exception {
     //given
     String filename = "assessments/trades.json";
-    List<String> expected = Arrays.asList(new String[]{"MSFT", "CSCO", "CTS"});
+    List<String> expected = Arrays.asList(new String[]{"CTS", "CSCO", "MSFT"});
 
     //when
     List<String> results = PortfolioManagerApplication
         .mainReadFile(new String[]{filename});
-        /*for(int i = 0; i < results.size(); i++) {
-          System.out.println("Trades symbols:::- " + results.get(i));
-        }*/
+        //for(int i = 0; i < results.size(); i++) System.out.println("Trades symbols:::- " + results.get(i));
     //then
     Assertions.assertEquals(expected, results);
   }

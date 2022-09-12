@@ -2,6 +2,7 @@
 package com.crio.warmup.stock.dto;
 
 import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class PortfolioTrade {
 
@@ -14,7 +15,10 @@ public class PortfolioTrade {
 
   private String symbol;
   private int quantity;
+  //@JsonProperty(value="tradeType")
   private TradeType tradeType;
+  
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
   private LocalDate purchaseDate;
 
   public PortfolioTrade(String symbol, int quantity, LocalDate purchaseDate) {
