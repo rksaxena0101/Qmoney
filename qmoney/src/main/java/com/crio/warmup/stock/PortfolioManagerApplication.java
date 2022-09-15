@@ -60,22 +60,7 @@ public class PortfolioManagerApplication {
   // 2. You can copy relevant code from #mainReadFile to parse the Json.
   // 3. Use RestTemplate#getForObject in order to call the API,
   //    and deserialize the results in List<Candle>
-
-  /*public static List<String> mainReadQuotes(String[] args) throws IOException, URISyntaxException {
-    //List<String> symbols =  mainReadFile(args);
-    ObjectMapper objMap = new ObjectMapper();
-    List<String> list = new ArrayList<String>();
-
-    File filePath = new File("src/main/resources/"+ args[0]);
-    //System.out.println("File::- "+ args[0]+" date::- "+args[1]);
-    PortfolioTrade[] portTrade = objMap.readValue(filePath, PortfolioTrade[].class);
-    
-    for(PortfolioTrade lst: portTrade) {
-      System.out.println("portFolioSymbols:::-"+lst.getSymbol());
-      list.add(lst.getSymbol());
-    }
-    return list;
-  }*/
+  
 public static List<String> mainReadQuotes(String[] args) throws IOException, URISyntaxException {
     File f = resolveFileFromResources(args[0]);
     ObjectMapper om = getObjectMapper();
@@ -89,12 +74,14 @@ public static List<String> mainReadQuotes(String[] args) throws IOException, URI
        LocalDate localDate = LocalDate.parse(args[1]);
        String token="209ac85df2915ec7ab39b5540baebb2eda5db14c";
        String Url = prepareUrl(pf,localDate,token);
+       System.out.println(Url);
        TiingoCandle[] tc = rt.getForObject( Url, TiingoCandle[].class);
        if(tc==null)
        {
          continue;
        }           // candle helper object to sort symbols according to their current prices ->
        TotalReturnsDto temp = new TotalReturnsDto(sym,tc[tc.length-1].getClose());
+       System.out.println("Closing Price= "+temp.getClosingPrice()+" tc[tc.length-1]= "+ tc[tc.length-1].getClose()+" getSymbol= "+temp.getSymbol());
        ls.add(temp);
     }
     Collections.sort(ls, new Comparator<TotalReturnsDto>() {
@@ -123,7 +110,7 @@ public static List<String> mainReadQuotes(String[] args) throws IOException, URI
 
     //System.out.println("Inside read Trades from JSON::-"+ls);
     return ls; 
-    }
+  }
 
     private static ObjectMapper getObjectMapper() {
       ObjectMapper objectMapper = new ObjectMapper();

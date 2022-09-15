@@ -42,9 +42,7 @@ class PortfolioManagerApplicationTest {
     //when
     List<String> actual = PortfolioManagerApplication
         .mainReadQuotes(new String[]{filename, "2019-12-12"});
-    for(int i = 0; i<actual.size(); i++) {
-      System.out.println(actual.get(i));
-    }
+  
     //then
     Assertions.assertEquals(expected, actual);
   }
