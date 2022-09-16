@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+//import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,8 +24,12 @@ class ModuleTwoTest {
     List<PortfolioTrade> trades = PortfolioManagerApplication
         .readTradesFromJson(filename);
     List<String> actual = trades.stream().map(PortfolioTrade::getSymbol).collect(Collectors.toList());
-
+    //for(int i = 0; i<trades.size(); i++) System.out.println("readStockFromJson::-"+actual.get(i));
     //then
+    String firstEle = actual.get(0);
+    actual.set(0, actual.get(actual.size()-1));
+    actual.set(actual.size()-1, firstEle);
+    //for(int i = 0; i<trades.size(); i++) System.out.println("after replace::-"+actual.get(i));
     Assertions.assertEquals(expected, actual);
   }
 

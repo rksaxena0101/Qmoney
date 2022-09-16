@@ -18,15 +18,12 @@ class ModuleTwoTest {
     List<String> actual = PortfolioManagerApplication
         .mainReadQuotes(new String[]{filename, "2019-12-12"});
 
-        //for(int i = 0; i < actual.size(); i++) System.out.println("Actualy::-"+ actual.get(i));
-
     //then
     Assertions.assertEquals(expected, actual);
   }
 
   @Test
   void mainReadQuotesEdgeCase() throws Exception {
-    System.out.println("Inside mainReadQuotesEdgeCase");
     //given
     String filename = "assessments/empty.json";
     List<String> expected = Arrays.asList(new String[]{});
