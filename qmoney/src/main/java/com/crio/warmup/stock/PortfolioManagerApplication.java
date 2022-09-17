@@ -3,6 +3,7 @@ package com.crio.warmup.stock;
 
 import com.crio.warmup.stock.dto.*;
 import com.crio.warmup.stock.log.UncaughtExceptionHandler;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.File;
@@ -112,16 +113,9 @@ public static List<String> mainReadQuotes(String[] args) throws IOException, URI
       PortfolioTrade[] pf = om.readValue(resolveFileFromResources(filename), PortfolioTrade[].class);
       List<PortfolioTrade> ls = Arrays.asList(pf);
 
-      //String firstEle = ls.get(0).getSymbol();
-      PortfolioTrade endEle = ls.get(ls.size()-1);
-      
-      ls.set(ls.size()-1, ls.get(0));
-      ls.set(0, endEle);
-
-      //for(PortfolioTrade st: ls) System.out.println("ReadTradesfromJSON::-"+st.getSymbol());
       return ls;
-    } 
-  }
+    }
+  } 
 
   private static ObjectMapper getObjectMapper() {
     ObjectMapper objectMapper = new ObjectMapper();
