@@ -40,12 +40,15 @@ public class PortfolioManagerApplication {
   //  2. You can use "./gradlew build" to check if your code builds successfully.
   public static List<String> mainReadFile(String[] args) throws IOException, URISyntaxException {
     File f = resolveFileFromResources(args[0]);
-    List<String> lst = new ArrayList<String>();
     ObjectMapper om = getObjectMapper();
     PortfolioTrade[] trades = om.readValue(f, PortfolioTrade[].class);
-    for(PortfolioTrade pf:trades) lst.add(pf.getSymbol());
-
-    return (lst == null) ? Arrays.asList(new String[]{}) : lst;
+    List<String> arr = new ArrayList<>();
+    for(PortfolioTrade trade:trades)
+    {
+      arr.add(trade.getSymbol());
+      
+    }
+    return arr;    
   }
 
   // TODO: CRIO_TASK_MODULE_CALCULATIONS
