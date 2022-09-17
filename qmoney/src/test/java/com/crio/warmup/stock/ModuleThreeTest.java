@@ -34,8 +34,8 @@ class ModuleThreeTest {
     String filename = "assessments/empty.json";
 
     //when
-    List<AnnualizedReturn> result = PortfolioManagerApplication
-        .mainCalculateSingleReturn(new String[]{filename, "2019-12-12"});
+    List<AnnualizedReturn> result = PortfolioManagerApplication.mainCalculateSingleReturn(new String[]{filename, "2019-12-12"});
+    for(AnnualizedReturn an: result) System.out.println("mainCalculateReturnEdgeCase() ="+an.getSymbol());
 
     Assertions.assertTrue(result.isEmpty());
   }

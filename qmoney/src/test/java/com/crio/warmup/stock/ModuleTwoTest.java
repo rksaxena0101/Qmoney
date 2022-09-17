@@ -31,6 +31,7 @@ class ModuleTwoTest {
     //when
     List<String> actual = PortfolioManagerApplication
         .mainReadQuotes(new String[]{filename, "2019-12-12"});
+        System.out.println("mainReadQuotesEdgeCase actual = "+actual);
 
     //then
     Assertions.assertEquals(expected, actual);
