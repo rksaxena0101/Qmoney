@@ -81,9 +81,9 @@ public static List<String> mainReadQuotes(String[] args) throws IOException, URI
        String sym = pf.getSymbol();
        LocalDate localDate = LocalDate.parse(args[1]);
        String Url = prepareUrl(pf,localDate,getToken());
-       System.out.println(Url);
+       //System.out.println(Url);
        TiingoCandle[] tc = rt.getForObject( Url, TiingoCandle[].class);
-       if(tc==null) continue;
+       if(tc == null) continue;
             
        // candle helper object to sort symbols according to their current prices ->
        TotalReturnsDto temp = new TotalReturnsDto(sym,tc[tc.length-1].getClose());
