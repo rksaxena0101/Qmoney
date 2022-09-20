@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-
 class PortfolioManagerApplicationTest {
 
 
@@ -61,6 +60,7 @@ class PortfolioManagerApplicationTest {
     //then
     List<String> symbols = result.stream().map(AnnualizedReturn::getSymbol)
         .collect(Collectors.toList());
+        System.out.println(result.get(0).getAnnualizedReturn()+" "+result.get(1).getAnnualizedReturn());
     Assertions.assertEquals(0.814, result.get(0).getAnnualizedReturn(), 0.01);
     Assertions.assertEquals(0.584, result.get(1).getAnnualizedReturn(), 0.01);
     Assertions.assertEquals(0.33, result.get(2).getAnnualizedReturn(),0.01);
@@ -74,7 +74,6 @@ class PortfolioManagerApplicationTest {
     AnnualizedReturn returns = PortfolioManagerApplication
         .calculateAnnualizedReturns(LocalDate.parse("2018-01-01"),
         trade, 10000.00, 11000.00);
-        System.out.println("TEST anual Calculate = "+returns.getAnnualizedReturn());
     Assertions.assertEquals(returns.getAnnualizedReturn(), 0.0322, 0.0001);
   }
 
@@ -84,15 +83,12 @@ class PortfolioManagerApplicationTest {
     AnnualizedReturn returns = PortfolioManagerApplication
         .calculateAnnualizedReturns(LocalDate.parse("2019-12-12"),
         trade, 1054.00, 1348.00);
-        //System.out.println("TEST anual Calculate = "+returns.getAnnualizedReturn());
     Assertions.assertEquals(returns.getAnnualizedReturn(), 0.298, 0.001);
   }
 
   @Test
   public void testAllDebugValues() {
     List<String> responses = PortfolioManagerApplication.debugOutputs();
-    System.out.println("[testAllDebugValues()] = "+responses.get(0).contains("trades.json"));
-    System.out.println("[testAllDebugValues()] = "+responses.get(1).contains("trades.json"));
     Assertions.assertTrue(responses.get(0).contains("trades.json"));
     Assertions.assertTrue(responses.get(1).contains("trades.json"));
     Assertions.assertTrue(responses.get(2).contains("ObjectMapper"));

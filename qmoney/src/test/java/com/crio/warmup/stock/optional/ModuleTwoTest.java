@@ -20,12 +20,10 @@ class ModuleTwoTest {
     List<String> expected = Arrays.asList(new String[]{"MSFT", "CSCO", "CTS"});
 
     //when
-    List<PortfolioTrade> trades = PortfolioManagerApplication.readTradesFromJson(filename);
-    //for(PortfolioTrade pt: trades) System.out.println("trades readStockFromJson() ="+pt.getSymbol());
-    System.out.println("!trades:  "  + trades  );
+    List<PortfolioTrade> trades = PortfolioManagerApplication
+        .readTradesFromJson(filename);
     List<String> actual = trades.stream().map(PortfolioTrade::getSymbol).collect(Collectors.toList());
-    //System.out.println("actual readStockFromJson() ="+actual);
-    System.out.println("!actual:  "  + actual  );
+
     //then
     Assertions.assertEquals(expected, actual);
   }
