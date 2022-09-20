@@ -128,6 +128,21 @@ public static List<String> mainReadQuotes(String[] args) throws IOException, URI
       ObjectMapper om = getObjectMapper();
       PortfolioTrade[] pf = om.readValue(resolveFileFromResources(filename), PortfolioTrade[].class);
       List<PortfolioTrade> ls = Arrays.asList(pf);
+    // if(filename == "assessments/empty.json") {
+    //   return Arrays.asList(new PortfolioTrade[]{});
+    // } else {
+    //   ObjectMapper om = getObjectMapper();
+    //   PortfolioTrade[] pf = om.readValue(resolveFileFromResources(filename), PortfolioTrade[].class);
+    //   List<PortfolioTrade> ls = Arrays.asList(pf);
+
+    //   //String firstEle = ls.get(0).getSymbol();
+    //   PortfolioTrade endEle = ls.get(ls.size()-1);
+      
+    //   ls.set(ls.size()-1, ls.get(0));
+    //   ls.set(0, endEle);
+
+
+      //for(PortfolioTrade st: ls) System.out.println("ReadTradesfromJSON::-"+st.getSymbol());
       return ls;
     }
   } 
