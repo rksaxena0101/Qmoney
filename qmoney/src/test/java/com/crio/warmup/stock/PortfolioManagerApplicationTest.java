@@ -60,7 +60,6 @@ class PortfolioManagerApplicationTest {
     //then
     List<String> symbols = result.stream().map(AnnualizedReturn::getSymbol)
         .collect(Collectors.toList());
-        System.out.println(result.get(0).getAnnualizedReturn()+" "+result.get(1).getAnnualizedReturn());
     Assertions.assertEquals(0.814, result.get(0).getAnnualizedReturn(), 0.01);
     Assertions.assertEquals(0.584, result.get(1).getAnnualizedReturn(), 0.01);
     Assertions.assertEquals(0.33, result.get(2).getAnnualizedReturn(),0.01);
